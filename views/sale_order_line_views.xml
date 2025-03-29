@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Heredar vista tipo árbol de sale.order.line -->
-    <record id="view_order_line_tree_inherit_material_risk" model="ir.ui.view">
-        <field name="name">sale.order.line.tree.inherit.material.risk</field>
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+    <record id="view_order_form_inherit_material_risk" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.material.risk</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='price_unit']" position="after">
-                <field name="is_hazardous_material"/>
-            </xpath>
-        </field>
-    </record>
 
-    <!-- Heredar vista tipo formulario de sale.order.line -->
-    <record id="view_order_line_form_inherit_material_risk" model="ir.ui.view">
-        <field name="name">sale.order.line.form.inherit.material.risk</field>
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='price_unit']" position="after">
+            <!-- Agregar campo a la vista tipo formulario de líneas -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
                 <field name="is_hazardous_material"/>
             </xpath>
+
+            <!-- Agregar campo a la vista tipo lista de líneas -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="after">
+                <field name="is_hazardous_material"/>
+            </xpath>
+
         </field>
     </record>
 </odoo>
