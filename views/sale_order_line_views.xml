@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Heredar la vista de formulario de venta -->
+    <record id="view_order_form_inherit_material_risk" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.material.risk</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Insertar el campo en la vista de línea -->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="is_hazardous_material"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                <field name="is_hazardous_material"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
